@@ -54,7 +54,7 @@ In order to read the JSON in a human friendly way, it is suggested you install s
 
 **If at any time you get version drift in this workshop, you can find out your current active version and work from that using the following command:**
 
-`curl -sv -H "Fastly-Key: ${API_KEY}" https://api.fastly.com/service/${SERVICE_ID}/details | jq`
+`curl -H "Fastly-Key: ${API_KEY}" https://api.fastly.com/service/${SERVICE_ID}/details | jq`
 
 You will receive a JSON response listing all versions. You will want to find the one where `"active": true`:
 
@@ -226,7 +226,7 @@ alias curltest="curl -w '\nLookup time:\t%{time_namelookup}\nConnect time:\t%{ti
 We can then download our video as such (replacing `<num>` with the number of your assigned service.:
 
 ````
-curltest https://<num>-videoworkshop.global.ssl.fastly.net/vod/tears_of_steel/720p.mp4
+curltest https://<num>-videoworkshop.global.ssl.fastly.net/vod/zz_top/720p.mp4
 ````
 
 You should receive an output like this:
@@ -395,13 +395,13 @@ curl -H "Fastly-Key: ${API_KEY}" -X PUT https://api.fastly.com/service/${SERVICE
 Now, lets purge the file we downloaded from cache so we can test a fresh download. Use cURL for the following command, again updating URL with your specific service number
 
 ````
-curl -X PURGE https://<num>-videoworkshop.global.ssl.fastly.net/vod/tears_of_steel/720p.mp4
+curl -X PURGE https://<num>-videoworkshop.global.ssl.fastly.net/vod/zz_top/720p.mp4
 ````
 
 Now, we can test the performance of the download again:
 
 ````
-curltest https://<num>-videoworkshop.global.ssl.fastly.net/vod/tears_of_steel/720p.mp4
+curltest https://<num>-videoworkshop.global.ssl.fastly.net/vod/zz_top/720p.mp4
 ````
 
 You should see a faster download after these changes. We will explore these more in our Sumo dashboard as well.
